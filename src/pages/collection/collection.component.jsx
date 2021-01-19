@@ -7,6 +7,7 @@ import CollectionItem from "../../components/collection-item/collection-item.com
 import "./collection.styles.scss";
 
 const CollectionPage = ({ collection }) => {
+  console.log(collection);
   const { title, items } = collection;
   return (
     <div className="collection-page">
@@ -21,7 +22,8 @@ const CollectionPage = ({ collection }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps.match.params.collectionId);
+  console.log(state);
+  console.log("ownProps", ownProps);
   return {
     collection: selectCollection(ownProps.match.params.collectionId)(state)
   };
