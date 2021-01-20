@@ -21,6 +21,7 @@ export const fetchCollectionsFailure = (errorMessage) => {
   };
 };
 
+// Thunk Action Which would dispatch normal actions as data is get fetched.
 export const fetchCollectionsStartAsync = () => {
   return (dispatch) => {
     const collectionRef = firestore.collection("collections");
