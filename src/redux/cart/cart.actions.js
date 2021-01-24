@@ -1,6 +1,12 @@
 import CartActionTypes from "./cart.types";
 
-const { TOGGLE_CART_HIDDEN, ADD_ITEM, CLEAR_ITEM_FROM_CART, REMOVE_ITEM } = CartActionTypes;
+const {
+  TOGGLE_CART_HIDDEN,
+  ADD_ITEM,
+  CLEAR_ITEM_FROM_CART,
+  REMOVE_ITEM,
+  CLEAR_CART
+} = CartActionTypes;
 
 export const toggleCartHidden = () => {
   return {
@@ -26,5 +32,11 @@ export const removeItem = (item) => {
   return {
     type: REMOVE_ITEM,
     payload: item
+  };
+};
+
+export const clearCart = () => {
+  return {
+    type: CLEAR_CART
   };
 };
