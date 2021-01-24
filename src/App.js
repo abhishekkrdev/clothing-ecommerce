@@ -9,12 +9,6 @@ import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up
 import CheckoutPage from "./pages/checkout/checkout.component";
 import Header from "./components/header/header.component";
 
-import {
-  auth,
-  createUserProfileDocument,
-  addCollectionAndDocuments
-} from "./firebase/firebase.utils";
-import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";
 
@@ -29,31 +23,11 @@ class App extends Component {
 
   unsubscribeFromAuth = null;
 
-  componentDidMount() {
-    const { setCurrentUser, collectionsArray } = this.props;
+  // componentDidMount() {}
 
-    // Firebase Auth Listener
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot((snapShot) => {
-          setCurrentUser({ id: snapShot.id, ...snapShot.data() });
-        });
-      }
-      // Till the user information is getting fetched, make it null
-      setCurrentUser(userAuth);
-      // addCollectionAndDocuments(
-      //   "collections",
-      //   collectionsArray.map(({ title, items }) => {
-      //     return { title, items };
-      //   })
-      // );
-    });
-  }
-
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+  // componentWillUnmount() {
+  //   this.unsubscribeFromAuth();
+  // }
 
   render() {
     return (
@@ -79,10 +53,4 @@ const mapStateToProps = createStructuredSelector({
   collectionsArray: selectCollectionsForPreview
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setCurrentUser: (user) => dispatch(setCurrentUser(user))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
