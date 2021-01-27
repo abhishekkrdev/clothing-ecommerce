@@ -21,16 +21,10 @@ class App extends Component {
     };
   }
 
-  unsubscribeFromAuth = null;
-
   componentDidMount() {
     const { checkUserSession } = this.props;
     checkUserSession();
   }
-
-  // componentWillUnmount() {
-  //   this.unsubscribeFromAuth();
-  // }
 
   render() {
     return (
